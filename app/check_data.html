@@ -1,0 +1,24 @@
+ <!-- To check for socket outputs in another browser window, checking command_output was not working with Postman socket -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocketIO Terminal</title>
+</head>
+<body>
+    <h2>Command Output</h2>
+    <pre id="output"></pre>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const socket = io('http://localhost:5000');
+        
+        socket.on('command_output', function(data) {
+            document.getElementById('output').textContent += data.output + "\n";
+        });
+    </script>
+
+</body>
+</html>
